@@ -1,12 +1,31 @@
 
 // import './App.css'
+import { useState } from "react"
 import ChatInput from "./ChatInput"
 import ChatMessage from "./ChatMessage"
+
 function App() {
+
+  const [theme, setTheme] = useState("Light Mode")
+
+  const toggleTheme = () => {
+    if(theme === "Light Mode"){
+      setTheme("Dark Mode");
+    }
+    else{
+      setTheme("Light Mode");
+    }
+  }
 
 
   return (
-    <>
+    <div style={{
+      backgroundColor: theme === "Light Mode" ? "white" : 'black',
+      color: theme === "Light Mode" ? "black" : "white", 
+    }}>
+
+    <h1>Current Theme: {theme}</h1>
+    <button onClick={toggleTheme}>Toggle Theme</button>
 
     <ChatInput/>
     <ChatMessage 
@@ -25,9 +44,8 @@ function App() {
     message="Today is September 27" 
     sender="robot"
     />
-    {/* <ChatMessage message="How "/> */}
 
-    </>
+    </div>
   )
 }
 
